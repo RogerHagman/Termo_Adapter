@@ -1,6 +1,4 @@
-import time
 import logging
-import polars as po
 from temperature_converter import TemperatureConverter
 from sensors import CelsiusTemperatureSensor, \
     FahrenheitTemperatureSensor, TemperatureSensorAdapter
@@ -37,14 +35,3 @@ if __name__ == "__main__":
 
     # Testing the Adapter
     test_temperature_sensor_adapter(adapter, celsius_sensor, fahrenheit_sensor)
-    time.sleep(2)
-
-    # Loading the data
-    df = po.read_csv("thermometry.csv")
-
-    # Instantiate the converter and convert the temperatures
-    converter = TemperatureConverter(df)
-    df_celsius = converter.convert_to_celsius('body.temp')
-
-    # Displaying the DataFrame
-    print(df_celsius)
